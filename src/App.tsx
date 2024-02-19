@@ -3,10 +3,7 @@ import Contract from "./page/Contract";
 import Recipient from './page/Recipient';
 import SmallBusiness from './page/SmallBusiness';
 import SubContract from './page/SubContract';
-
-function Home() {
-  return <div><h2>Home Page</h2></div>;
-}
+import Home from './page/Home';
 
 function App() {
   return (
