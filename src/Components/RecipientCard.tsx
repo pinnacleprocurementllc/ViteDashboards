@@ -1,6 +1,17 @@
 import React, {useEffect} from 'react';
 
-const RecipientCard = ({recipient}) => {
+interface RecipientProps {
+    recipient: {
+        id: string;
+        duns: string;
+        uei: string;
+        name: string;
+        recipient_level: string;
+        amount: number; // Assuming amount should be a number
+    };
+}
+
+const RecipientCard: React.FC<RecipientProps> = ({ recipient }) => {
     return(
         <div className="bg-white shadow-md rounded-lg p-4 mb-4">
             <h2 className="text-lg font-semibold text-gray-900">{recipient.name}</h2>

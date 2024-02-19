@@ -14,7 +14,7 @@ const samStore = create((set) => ({
             console.log("This is the response: ", response.data.opportunitiesData);
             set({ contracts: response.data.opportunitiesData, loading: false });
         } catch (error) {
-            set({ error: error.message, loading: false });
+            set({ error: error, loading: false });
         }
     },
 
