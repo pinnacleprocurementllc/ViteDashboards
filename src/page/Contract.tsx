@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 import samStore from "../store/samStore";
 
 interface Awardee {
@@ -66,7 +66,7 @@ interface samContractReturnType {
 const Contract = () => {
 
     // Use Sam store to access state and actions
-    const { contracts, loading, error, fetchContracts } = samStore() as samContractReturnType;
+    const { contracts, fetchContracts } = samStore() as samContractReturnType;
 
     // Fetch contracts when the component mounts
     useEffect(() => {

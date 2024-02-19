@@ -102,7 +102,7 @@ const usaspendingStore = create((set) => ({
             console.log("This is the response: ", response.data.results);
             set({ subcontracts: response.data.results, loading: false });
         } catch (error) {
-            set({ error: error.message, loading: false });
+            set({ error: error, loading: false });
         }
     },
 }));

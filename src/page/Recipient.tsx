@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 import usaSpendingStore from "../store/usaSpendingStore";
 import RecipientCard from '../Components/RecipientCard';
 
