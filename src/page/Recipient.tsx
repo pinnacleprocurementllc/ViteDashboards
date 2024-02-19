@@ -21,7 +21,7 @@ interface usaSpendingRecipientType {
 const Recipient = () => {
 
     // Use usaspending store to access state and actions
-    const { recipients, loading, error, fetchRecipients } = usaSpendingStore() as usaSpendingRecipientType;
+    const { recipients, fetchRecipients } = usaSpendingStore() as usaSpendingRecipientType;
 
     // Fetch contracts when the component mounts
     useEffect(() => {

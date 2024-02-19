@@ -21,7 +21,7 @@ interface usaSpendingSmallBusinessReturnType {
 
 const SmallBusiness = () => {
 
-    const {smallbusinesses, error, loading, fetchSmallBusiness } = usaspendingStore() as usaSpendingSmallBusinessReturnType;
+    const {smallbusinesses, fetchSmallBusiness } = usaspendingStore() as usaSpendingSmallBusinessReturnType;
 
     useEffect(() => {
         fetchSmallBusiness();

@@ -21,7 +21,7 @@ interface usaSpendingSubContractReturnType {
 
 const SubContract = () => {
 
-    const {subcontracts, error, loading, fetchSubContracts } = usaspendingStore() as usaSpendingSubContractReturnType;
+    const {subcontracts, fetchSubContracts } = usaspendingStore() as usaSpendingSubContractReturnType;
 
     useEffect(() => {
         fetchSubContracts();
