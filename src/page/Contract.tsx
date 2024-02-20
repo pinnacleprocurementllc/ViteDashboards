@@ -110,10 +110,10 @@ const Contract = () => {
                 <tbody className="bg-white">
                     {contracts.map((contract, index) => (
                     <tr key={index} className="even:bg-gray-50">
-                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
+                        <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3 break-words whitespace-normal">
                         {contract.title}
                         </td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{contract.fullParentPathName}</td>
+                        <td className="whitespace-normal break-words px-3 py-4 text-sm text-gray-500">{contract.fullParentPathName}</td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{contract.solicitationNumber}</td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{contract.postedDate}</td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{contract.type}</td>
