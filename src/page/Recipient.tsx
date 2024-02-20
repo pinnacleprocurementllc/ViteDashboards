@@ -70,7 +70,7 @@ const Recipient = () => {
                         <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
                         {recipient.name}
                         </td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{recipient.amount}</td>
+                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(recipient.amount)}</td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{recipient.duns}</td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{recipient.id}</td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{recipient.recipient_level}</td>

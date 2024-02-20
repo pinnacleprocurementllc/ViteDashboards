@@ -72,7 +72,7 @@ const SmallBusiness = () => {
                         <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
                         {smallbusiness["Recipient Name"]}
                         </td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{smallbusiness["Award Amount"]}</td>
+                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(smallbusiness["Award Amount"]))}</td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{smallbusiness["Place of Performance State Code"]}</td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{smallbusiness["Award ID"]}</td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{smallbusiness["Awarding Sub Agency"]}</td>
