@@ -24,17 +24,9 @@ function classNames(...classes: (string | undefined | null)[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+const Home = () => {
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full">
-        <body class="h-full">
-        ```
-      */}
       <div className="min-h-full">
         <Disclosure as="nav" className="border-b border-gray-200 bg-white">
           {({ open }) => (
@@ -204,3 +196,5 @@ export default function Example() {
     </>
   )
 }
+
+export default Home;
