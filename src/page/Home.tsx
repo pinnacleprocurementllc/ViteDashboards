@@ -36,12 +36,6 @@ const userNavigation = [
   { name: 'Sign out', href: '#' },
 ]
 
-const stats = [
-    { name: 'Total Subscribers', stat: '71,897' },
-    { name: 'Avg. Open Rate', stat: '58.16%' },
-    { name: 'Avg. Click Rate', stat: '24.57%' },
-  ]
-
 function classNames(...classes: (string | undefined | null)[]) {
   return classes.filter(Boolean).join(' ')
 }
