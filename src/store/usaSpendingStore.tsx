@@ -5,6 +5,7 @@ const usaspendingStore = create((set) => ({
     recipients: [],
     smallbusinesses: [],
     subcontracts: [],
+    results: [],
     loading: false,
     error: null,
 
@@ -101,6 +102,27 @@ const usaspendingStore = create((set) => ({
             const response = await axios.post("https://api.usaspending.gov/api/v2/search/spending_by_award/", payload);
             console.log("This is the response: ", response.data.results);
             set({ subcontracts: response.data.results, loading: false });
+        } catch (error) {
+            set({ error: error, loading: false });
+        }
+    },
+
+    fetchMissouriDollarsSpent: async () => {
+        set({ loading: true, error: null });
+        try {
+            const payload = {
+                "group":"fiscal_year",
+                "filters":{
+                    "time_period":[{"start_date":"2024-01-01","end_date":"2024-09-30"}],
+                    "place_of_performance_locations":[{"state":"MO","country":"USA"}]},
+                    "subawards":false,
+                    "auditTrail":"Spending Over Time Visualization"
+                }
+
+            // Retrieve the contract information
+            const response = await axios.post("https://api.usaspending.gov/api/v2/search/spending_over_time/", payload);
+            console.log("This is the response: ", response.data.results);
+            set({ results: response.data.results, loading: false });
         } catch (error) {
             set({ error: error, loading: false });
         }
