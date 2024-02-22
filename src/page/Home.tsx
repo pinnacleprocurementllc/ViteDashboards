@@ -3,6 +3,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import logo from '../assets/logo.png';
 import usaSpendingStore from "../store/usaSpendingStore";
+import { Analytics } from "@vercel/analytics/react";
 
 interface TimePeriod {
     fiscal_year: string;
@@ -16,11 +17,11 @@ interface Result {
 interface DisasterSpendingData {
     amount: number;
     display_name: string;
-    shape_code: string,
-    population: number,
-    per_capita: string,
-    award_count: string
-  }
+    shape_code: string;
+    population: number;
+    per_capita: string;
+    award_count: string;
+}
 
 interface SpendingData {
     group: string;
@@ -63,6 +64,7 @@ const Home = () => {
     return (
         <>
         <div className="min-h-full">
+            <Analytics />
             <Disclosure as="nav" className="border-b border-gray-200 bg-white">
             {({ open }) => (
                 <>
@@ -243,7 +245,7 @@ const Home = () => {
                         <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
                         {disasterSpending.map((result, index) => (
                             <div key={index} className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-                            <dt className="truncate text-sm font-medium text-gray-500">Disaster Dollars {result.display_name} </dt>
+                            <dt className="truncate text-sm font-medium text-gray-500">Disaster Dollars {result.display_name}</dt>
                             <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(result.amount)}</dd>
                             </div>
                         ))}
