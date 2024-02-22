@@ -22,12 +22,13 @@ const usaspendingStore = create((set) => ({
             set({ error: error, loading: false });
         }
     },
+    
     fetchSmallBusiness: async () => {
         set({ loading: true, error: null });
         try {
             const payload = {
                 "filters": {
-                    "time_period": [{"start_date": "2007-10-01", "end_date": "2024-09-30"}],
+                    "time_period": [{"start_date": "2023-10-01", "end_date": "2024-09-30"}],
                     "award_type_codes": ["A", "B", "C", "D"],
                     "recipient_type_names": [
                         "small_business",
@@ -46,7 +47,7 @@ const usaspendingStore = create((set) => ({
                     "recipient_id", "prime_award_recipient_id", "Place of Performance State Code",
                 ],
                 "page": 1,
-                "limit": 60,
+                "limit": 100,
                 "sort": "Start Date",
                 "order": "desc",
                 "subawards": false
@@ -60,6 +61,7 @@ const usaspendingStore = create((set) => ({
             set({ error: error, loading: false });
         }
     },
+
     fetchSubContracts: async () => {
         set({ loading: true, error: null });
         try {
@@ -92,12 +94,11 @@ const usaspendingStore = create((set) => ({
                     "prime_award_recipient_id",
                 ],
                 "page":1,
-                "limit":60,
-                "sort":"Award Amount",
+                "limit":100,
+                "sort":"Start Date",
                 "order":"desc",
                 "subawards":false
             };
-
 
             // Retrieve the contract information
             const response = await axios.post("https://api.usaspending.gov/api/v2/search/spending_by_award/", payload);
@@ -114,7 +115,7 @@ const usaspendingStore = create((set) => ({
             const payload = {
                 "group":"fiscal_year",
                 "filters":{
-                    "time_period":[{"start_date":"2024-01-01","end_date":"2024-09-30"}],
+                    "time_period":[{"start_date":"2023-10-01","end_date":"2024-09-30"}],
                     "place_of_performance_locations":[{"state":"MO","country":"USA"}]
                 },
                 "subawards":false,
@@ -131,26 +132,26 @@ const usaspendingStore = create((set) => ({
         }
     },
 
-  fetchDisasterSpending: async () => {
-    try {
-        const payload = {
-            "filter": {
-                "def_codes": ["L", "M", "N", "O", "P", "U"]
-            },
-            "geo_layer": "state",
-            "geo_layer_filters": ["NE", "WY", "CO", "IA", "IL", "MI", "IN", "TX"],
-            "scope": "recipient_location",
-            "spending_type": "obligation"
+    fetchDisasterSpending: async () => {
+        try {
+            const payload = {
+                "filter": {
+                    "def_codes": ["L", "M", "N", "O", "P", "U"]
+                },
+                "geo_layer": "state",
+                "geo_layer_filters": ["MO"],
+                "scope": "recipient_location",
+                "spending_type": "obligation"
+            }
+            const response = await axios.post('https://api.usaspending.gov/api/v2/disaster/spending_by_geography/', payload);
+            console.log("fetchDisasterData: ", response.data);
+            set({ disasterSpending: response.data.results });
+            console.log("This is the response: ", response);
+        } catch (error) {
+            console.error('Failed to fetch disaster spending data:', error);
+            set({ disasterSpending: null });
         }
-        const response = await axios.post('https://api.usaspending.gov/api/v2/disaster/spending_by_geography/', payload);
-        console.log("fetchDisasterData: ", response.data);
-        set({ disasterSpending: response.data.results });
-        console.log("This is the response: ", response);
-    } catch (error) {
-        console.error('Failed to fetch disaster spending data:', error);
-        set({ disasterSpending: null });
-    }
-  },
+    },
 }));
 
 export default usaspendingStore;

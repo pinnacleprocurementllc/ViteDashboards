@@ -32,7 +32,7 @@ const SmallBusiness = () => {
             <div className="sm:flex-auto">
             <h1 className="text-base font-semibold leading-6 text-gray-900">Small Business Contracts</h1>
             <p className="mt-2 text-sm text-gray-700">
-                A list of contracts...
+                A list of veterna, sdvosb small business who have been awarded a contract
             </p>
             </div>
         </div>
