@@ -6,6 +6,7 @@ const usaspendingStore = create((set) => ({
     smallbusinesses: [],
     subcontracts: [],
     results: [],
+    disasterSpending: [],
     loading: false,
     error: null,
 
@@ -114,10 +115,12 @@ const usaspendingStore = create((set) => ({
                 "group":"fiscal_year",
                 "filters":{
                     "time_period":[{"start_date":"2024-01-01","end_date":"2024-09-30"}],
-                    "place_of_performance_locations":[{"state":"MO","country":"USA"}]},
-                    "subawards":false,
-                    "auditTrail":"Spending Over Time Visualization"
-                }
+                    "place_of_performance_locations":[{"state":"MO","country":"USA"}]
+                },
+                "subawards":false,
+                "auditTrail":"Spending Over Time Visualization"
+            }
+            
 
             // Retrieve the contract information
             const response = await axios.post("https://api.usaspending.gov/api/v2/search/spending_over_time/", payload);
@@ -127,6 +130,27 @@ const usaspendingStore = create((set) => ({
             set({ error: error, loading: false });
         }
     },
+
+  fetchDisasterSpending: async () => {
+    try {
+        const payload = {
+            "filter": {
+                "def_codes": ["L", "M", "N", "O", "P", "U"]
+            },
+            "geo_layer": "state",
+            "geo_layer_filters": ["NE", "WY", "CO", "IA", "IL", "MI", "IN", "TX"],
+            "scope": "recipient_location",
+            "spending_type": "obligation"
+        }
+        const response = await axios.post('https://api.usaspending.gov/api/v2/disaster/spending_by_geography/', payload);
+        console.log("fetchDisasterData: ", response.data);
+        set({ disasterSpending: response.data.results });
+        console.log("This is the response: ", response);
+    } catch (error) {
+        console.error('Failed to fetch disaster spending data:', error);
+        set({ disasterSpending: null });
+    }
+  },
 }));
 
 export default usaspendingStore;

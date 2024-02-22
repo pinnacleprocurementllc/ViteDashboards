@@ -13,10 +13,21 @@ interface Result {
     time_period: TimePeriod;
 }
 
+interface DisasterSpendingData {
+    amount: number;
+    display_name: string;
+    shape_code: string,
+    population: number,
+    per_capita: string,
+    award_count: string
+  }
+
 interface SpendingData {
     group: string;
     results: Result[];
+    disasterSpending: DisasterSpendingData[];
     fetchMissouriDollarsSpent: () => void;
+    fetchDisasterSpending: () => void;
 }
 
 const user = {
@@ -41,11 +52,12 @@ function classNames(...classes: (string | undefined | null)[]) {
 }
 
 const Home = () => {
-    const {results, fetchMissouriDollarsSpent } = usaSpendingStore() as SpendingData;
+    const {results, fetchMissouriDollarsSpent, disasterSpending, fetchDisasterSpending } = usaSpendingStore() as SpendingData;
 
     // Fetch contracts when the component mounts
     useEffect(() => {
         fetchMissouriDollarsSpent();
+        fetchDisasterSpending();
     }, []); // Empty dependency array to ensure this runs only once on mount
 
     return (
@@ -220,6 +232,19 @@ const Home = () => {
                             <div key={index} className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
                             <dt className="truncate text-sm font-medium text-gray-500">Missouri Contract Dollars</dt>
                             <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(result.aggregated_amount)}</dd>
+                            </div>
+                        ))}
+                        </dl>
+                    </div>
+                </div>
+                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                    <div>
+                        <h3 className="text-base font-semibold leading-6 text-gray-900">Disaster Dollars</h3>
+                        <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+                        {disasterSpending.map((result, index) => (
+                            <div key={index} className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+                            <dt className="truncate text-sm font-medium text-gray-500">Disaster Dollars {result.display_name} </dt>
+                            <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(result.amount)}</dd>
                             </div>
                         ))}
                         </dl>
