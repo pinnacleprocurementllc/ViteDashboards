@@ -81,8 +81,7 @@ const SoftwareContracts = () => {
     // Fetch contracts when the component mounts
     useEffect(() => {
         fetchSoftwareContracts();
-    }, []); // Empty dependency array to ensure this runs only once on mount
-
+    }, []); 
     return (
         <div className="px-4 sm:px-6 lg:px-8">
         <div className="sm:flex sm:items-center">
