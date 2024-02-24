@@ -4,7 +4,6 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import logo from '../assets/logo.png';
 import usaSpendingStore from "../store/usaSpendingStore";
 import { Analytics } from "@vercel/analytics/react";
-import samStore from '../store/samStore';
 
 interface TimePeriod {
     fiscal_year: string;
