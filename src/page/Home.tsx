@@ -4,6 +4,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import logo from '../assets/logo.png';
 import usaSpendingStore from "../store/usaSpendingStore";
 import { Analytics } from "@vercel/analytics/react";
+import samStore from '../store/samStore';
 
 interface TimePeriod {
     fiscal_year: string;
@@ -41,6 +42,8 @@ const navigation = [
   { name: 'contract', href: '/contract', current: true },
   { name: 'recipients', href: '/recipients', current: false },
   { name: 'smallbusiness', href: '/smallbusiness', current: false },
+  { name: 'softwarecontracts', href: '/softwarecontracts', current: false },
+
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },

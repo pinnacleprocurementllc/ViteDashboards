@@ -22,7 +22,7 @@ const usaspendingStore = create((set) => ({
             set({ error: error, loading: false });
         }
     },
-    
+
     fetchSmallBusiness: async () => {
         set({ loading: true, error: null });
         try {
@@ -152,6 +152,7 @@ const usaspendingStore = create((set) => ({
             set({ disasterSpending: null });
         }
     },
+
 }));
 
 export default usaspendingStore;

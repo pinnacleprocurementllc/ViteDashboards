@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const samStore = create((set) => ({
     contracts: [],
+    softwareContracts: [],
     loading: false,
     error: null,
 
@@ -17,8 +18,18 @@ const samStore = create((set) => ({
             set({ error: error, loading: false });
         }
     },
-    
 
+    fetchSoftwareContracts: async () => {
+        set({ loading: true, error: null });
+        try {
+            // Retrieve the contract information
+            const response = await axios.get("https://api.sam.gov/prod/opportunities/v2/search?limit=1000&api_key=1FgZGo0A8oeOC7vbpe5U52aftLoWHgCkN2ubETP3&postedFrom=10/01/2023&postedTo=09/30/2024&ncode=513210");
+            console.log("This is the response: ", response.data.opportunitiesData);
+            set({ softwareContracts: response.data.opportunitiesData, loading: false });
+        } catch (error) {
+            set({ error: error, loading: false });
+        }
+    },
 }));
 
 export default samStore;
